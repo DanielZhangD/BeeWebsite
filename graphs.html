@@ -1,0 +1,527 @@
+<head>
+	<title>Contribute</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<section class="hero is-light" style="background-color: white; height: 40px">
+	<div class="hero-body">
+	</div>
+</section>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+	<div class="navbar-brand">
+		<a href="http://localhost:3000/">
+			<img src="images/bees_logo.jpg" alt="Not The Bees" width="480" height="270" style="padding:0px 0px 0px 20px;">
+		</a>
+	</div>
+	<div class="navbar-menu">
+		<div class="navbar-end">
+			<a class="navbar-item">
+				About
+			</a>
+			<a class="navbar-item">
+				FAQ
+			</a>
+			<a class="navbar-item">
+				Contact
+			</a>
+			<a class="navbar-item">
+				Pledge
+			</a>
+		</div>
+	</div>
+</div>
+</nav>
+<section class="hero is-light" style="background-color: white; height: 50px">
+	<div class="hero-body">
+	</div>
+</section>
+<head>
+    <title>Line Chart</title>
+</head>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+  <title>Google Maps Multiple Markers</title>
+  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+</head>
+<body style="padding-left: 50px">
+  <div id="map" style="position: absolute; height: 300px; width: 500px;">
+</div>
+<div class="chart-container" style="padding-top: 50px; position: relative; left: 600px; height:150px; width:450px;   z-index: 1;">
+    <canvas id="myChart"></canvas>
+</div>
+<div class="chart-container" style="position: absolute; top:510px; height:290px; width:565px; border:1px solid #000000;">
+    <canvas id="chart"></canvas style="padding-top: 200px">
+</div>
+<script type="text/javascript">
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx1 = document.getElementById('chart').getContext('2d');
+    var locations = [
+      ['Toronto', 43.6532, -79.3832, 1],
+      ['Thunder Bay', 48.3809, -89.2477, 2],
+      ['Kitchener', 43.4503, -80.4832, 3],
+      ['Waterloo', 43.4643, -80.5204, 4],
+      ['Ottawa', 45.4215, -75.6972, 5],
+      ['Hamilton', 43.2557, -79.8711, 6]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 5,
+      center: new google.maps.LatLng(46.4215, -78.6972),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, marker1, marker2, marker3, marker4, marker5, i;
+
+        marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[0][1], locations[0][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[0][0]);
+          infowindow.open(map, marker);
+          var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+                // The data for our dataset
+                data: {
+                    labels: ["April", "May", "June", "July", "August", "Sept.", "October"],
+                    datasets: [{
+                        label: "Toronto",
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgb(250, 10, 10)',
+                        data: [7500, 10000, 8000, 6500, 4000, 3500],
+                    }]
+                },
+                    // Configuration options go here
+                    options: {
+                    title: {
+                        display: true,
+                        text: '2009 Adult Bee Population (USA)'
+                    },
+                    legend: {
+                        display: true,
+                        fullWidth: true
+                    },
+                    layout: {
+                        padding: {
+                            left: 20,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                                labelString: 'Months'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Population'
+                            },
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+      })(marker, 0));
+
+      marker1 = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[1][1], locations[1][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker1, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[1][0]);
+          infowindow.open(map, marker1);
+          var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+                // The data for our dataset
+                data: {
+                    labels: ["April", "May", "June", "July", "August", "Sept.", "October"],
+                    datasets: [{
+                        label: "Thunder Bay",
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgb(250, 130, 10)',
+                        data: [14750, 10750, 7000, 6250, 5500],
+                    }]
+                },
+                    // Configuration options go here
+                    options: {
+                    title: {
+                        display: true,
+                        text: '2009 Adult Bee Population (USA)'
+                    },
+                    legend: {
+                        display: true,
+                        fullWidth: true
+                    },
+                    layout: {
+                        padding: {
+                            left: 20,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                                labelString: 'Months'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Population'
+                            },
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+      })(marker1, 1));
+
+      marker2 = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[2][1], locations[2][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker2, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[2][0]);
+          infowindow.open(map, marker2);
+          var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+                // The data for our dataset
+                data: {
+                    labels: ["April", "May", "June", "July", "August", "Sept.", "October"],
+                    datasets: [{
+                        label: "Kitchener",
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgb(250, 250, 10)',
+                        data: [23000, 16000, 20000, 12000, 4000],
+                    }]
+                },
+                    // Configuration options go here
+                    options: {
+                    title: {
+                        display: true,
+                        text: '2009 Adult Bee Population (USA)'
+                    },
+                    legend: {
+                        display: true,
+                        fullWidth: true
+                    },
+                    layout: {
+                        padding: {
+                            left: 20,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                                labelString: 'Months'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Population'
+                            },
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+      })(marker2, 2));
+
+      marker3 = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[3][1], locations[3][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker3, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[3][0]);
+          infowindow.open(map, marker3);
+          var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+                // The data for our dataset
+                data: {
+                    labels: ["April", "May", "June", "July", "August", "Sept.", "October"],
+                    datasets: [{
+                        label: "Waterloo",
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgb(10, 250, 10)',
+                        data: [ , 14000, 11000, 8000, 7000, 3250, ],
+                    }]
+                },
+                    // Configuration options go here
+                    options: {
+                    title: {
+                        display: true,
+                        text: '2009 Adult Bee Population (USA)'
+                    },
+                    legend: {
+                        display: true,
+                        fullWidth: true
+                    },
+                    layout: {
+                        padding: {
+                            left: 20,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                                labelString: 'Months'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Population'
+                            },
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+      })(marker3, 3));
+
+      marker4 = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[4][1], locations[4][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker4, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[4][0]);
+          infowindow.open(map, marker4);
+          var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+                // The data for our dataset
+                data: {
+                    labels: ["April", "May", "June", "July", "August", "Sept.", "October"],
+                    datasets: [{
+                        label: "Ottawa",
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgb(10, 10, 250)',
+                        data: [ , 7500, 11000, 13000, 9750, 14000, 7000],
+                    }]
+                },
+                    // Configuration options go here
+                    options: {
+                    title: {
+                        display: true,
+                        text: '2009 Adult Bee Population (USA)'
+                    },
+                    legend: {
+                        display: true,
+                        fullWidth: true
+                    },
+                    layout: {
+                        padding: {
+                            left: 20,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                                labelString: 'Months'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Population'
+                            },
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+      })(marker4, 4));
+
+      marker5 = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[5][1], locations[5][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker5, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[5][0]);
+          infowindow.open(map, marker5);
+          var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+                // The data for our dataset
+                data: {
+                    labels: ["April", "May", "June", "July", "August", "Sept.", "October"],
+                    datasets: [{
+                        label: "Hamilton",
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgb(150, 1, 200)',
+                        data: [ , 13500, 15100, 15000, 7600],
+                    }]
+                },
+                    // Configuration options go here
+                    options: {
+                    title: {
+                        display: true,
+                        text: '2009 Adult Bee Population (USA)'
+                    },
+                    legend: {
+                        display: true,
+                        fullWidth: true
+                    },
+                    layout: {
+                        padding: {
+                            left: 20,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                                labelString: 'Months'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Population'
+                            },
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+      })(marker5, i));
+
+var chart1 = new Chart(ctx1, {
+    // The type of chart we want to create
+    type: 'line',
+    // The data for our dataset
+    data: {
+        labels: ["April", "May", "June", "July", "August", "Sept.", "October"],
+        datasets: [{
+            label: "Toronto",
+            backgroundColor: 'transparent',
+            borderColor: 'rgb(250, 10, 10)',
+            data: [7500, 10000, 8000, 6500, 4000, 3500],
+        },{
+            label: "Thunder Bay",
+            backgroundColor: 'transparent',
+            borderColor: 'rgb(250, 130, 10)',
+            data: [14750, 10750, 7000, 6250, 5500],
+        },{
+            label: "Kitchener",
+            backgroundColor: 'transparent',
+            borderColor: 'rgb(250, 250, 10)',
+            data: [23000, 16000, 20000, 12000, 4000],
+        },{
+            label: "Waterloo",
+            backgroundColor: 'transparent',
+            borderColor: 'rgb(10, 250, 10)',
+            data: [ , 14000, 11000, 8000, 7000, 3250],
+        },{
+            label: "Ottawa",
+            backgroundColor: 'transparent',
+            borderColor: 'rgb(10, 10, 250)',
+            data: [ , 7500, 11000, 13000, 9750, 14000, 7000],
+        },{
+            label: "Hamilton",
+            backgroundColor: 'transparent',
+            borderColor: 'rgb(150, 1, 200)',
+            data: [ , 13500, 15100, 15000, 7600, ],
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+        title: {
+            display: true,
+            text: '2009 Adult Bee Population (USA)'
+        },
+        legend: {
+            display: true,
+            fullWidth: true
+        },
+        layout: {
+            padding: {
+                left: 10,
+                right: 10,
+                top: 0,
+                bottom: 0
+            }
+        },
+        scales: {
+            xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Months'
+                }
+            }],
+            yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Population'
+                },
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+  </script>
+</body>

@@ -1,0 +1,110 @@
+<head>
+	<title>Contribute</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<section class="hero is-light" style="background-color: white; height: 40px">
+	<div class="hero-body">
+	</div>
+</section>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+	<div class="navbar-brand">
+		<a href="http://localhost:3000/">
+			<img src="images/bees_logo.jpg" alt="Not The Bees" width="480" height="270" style="padding:0px 0px 0px 20px;">
+		</a>
+	</div>
+	<div class="navbar-menu">
+		<div class="navbar-end">
+			<a class="navbar-item">
+				About
+			</a>
+			<a class="navbar-item">
+				FAQ
+			</a>
+			<a class="navbar-item">
+				Contact
+			</a>
+			<a class="navbar-item">
+				Pledge
+			</a>
+		</div>
+	</div>
+</div>
+</nav>
+<section class="hero is-light" style="background-color: white; height: 50px">
+	<div class="hero-body">
+	</div>
+</section>
+<section class="hero is-primary" style="background-color: #f68e56">
+	<div class="hero-body">
+		<div class="field" style="padding-left: 50px">
+			<a class="title is-6">
+				Please enter your location:<br>
+			</a>
+			<div class="select">
+				<select>
+					<option>Select Location</option>
+					<option>Toronto</option>
+					<option>Ottawa</option>
+					<option>Hamilton</option>
+					<option>Waterloo</option>
+					<option>Kitchener</option>
+					<option>Thunder Bay</option>
+				</select>
+			</div>
+		</div>
+		<div class="field" style="padding-left: 50px">
+			<a class="title is-6">
+				Please enter the initial number of bees tagged:
+			</a>
+			<div class="control">
+				<input class="input is-info" id="tag_initial" type="text" placeholder="Sample Size" style="width: 600px; float: left">
+			</div>
+		</div>
+		<div style="padding-left: 900px">
+			<a class="button is-dark" onclick='calculate()' action='calculate'>
+				Calculate
+			</a>
+			<script type="text/javascript">
+				function calculate() {
+					var e = $("#num_tag").val();
+					var a = $("#tag_initial").val();
+					var approximation = (a * a) / e;
+					var city = $('select').text().toString();;
+					document.getElementById("population").innerHTML = approximation;
+				}
+			</script>
+		</div>
+		<div class="field" style="padding-left: 50px">
+			<a class="title is-6">
+				Please enter the number of Tagged Bees observed in the second sample:
+			</a>
+			<div class="control">
+				<input class="input is-info" id="num_tag" type="text" placeholder="Number of Tagged Bees Observed" style="width: 600px">
+			</div>
+		</div>
+	</div>
+</section>
+<div class="tile is-ancestor" style="padding-top: 25px; padding-left: 25px">
+	<div class="tile is-vertical is-8">
+		<div class="tile">
+			<div class="tile is-parent is-vertical">
+				<article class="tile is-child notification is-primary" style="width: 600px">
+					<p class="title">Approximated Population Size:</p>
+					<p class="subtitle" id ="population"></p>
+				</article>
+				<article class="tile is-child notification is-warning" style="width: 600px">
+					<p class="title">Mean of the Sampling </p>
+					<p class="subtitle" id ="error"></p>
+				</article>
+			</div>
+			<div class="tile is-parent">
+				<a href="http://localhost:3000/graphs">
+					<article class="tile is-child notification is-info" style="width: 600px; height: 200px">
+						<p class="title">Graphical Representation:</p>
+						<p class="subtitle" id ="previous"><br>Click this link to view the bee decline in the 6 major participating cities within Ontario</p>
+					</article>
+				</a>
+			</div>
+		</div>
+	</div>
